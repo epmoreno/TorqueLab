@@ -1,0 +1,5 @@
+.env
+db
+pgadmin
+.DS_Store
+.git
