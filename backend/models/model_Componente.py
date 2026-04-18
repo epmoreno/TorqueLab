@@ -8,6 +8,7 @@ class Componente(Base):
     
     id_componente = Column(Integer, primary_key=True, autoincrement=True, nullable=False)
     nombre = Column(String(150), nullable=False)
+    descripcion = Column(TEXT, nullable=True)
     precio_venta = Column(Numeric(10, 2), nullable=False)
     precio_compra = Column(Numeric(10, 2), nullable=False)
     stock = Column(Integer, default=0, nullable=False)
@@ -24,6 +25,7 @@ class Componente(Base):
         return {
             "id_componente": self.id_componente,
             "nombre": self.nombre,
+            "descripcion": self.descripcion,
             "precio_venta": float(self.precio_venta),
             "precio_compra": float(self.precio_compra),
             "stock": self.stock,

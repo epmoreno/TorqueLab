@@ -3,6 +3,7 @@ from typing import Optional
 
 class ComponenteCreate(BaseModel):
     nombre: str
+    descripcion: Optional[str] = None
     precio_venta: float
     precio_compra: float
     stock: int = 0
