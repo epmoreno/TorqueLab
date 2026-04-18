@@ -1,13 +1,5 @@
-import os
-from sqlalchemy import create_engine, Column, Integer, String, Numeric, TEXT, ForeignKey
-from sqlalchemy.orm import declarative_base
-
-# 1. Crear el engine de la base de datos
-DATABASE_URL = os.getenv("DATABASE_URL")
-engine = create_engine(DATABASE_URL)
-
-# 2. Crear la clase base para los modelos declarativos
-Base = declarative_base()
+from sqlalchemy import Column, Integer, String, Numeric, TEXT, ForeignKey
+from db import Base
 
 # 3. Definir el modelo heredando de Base
 class Componente(Base):

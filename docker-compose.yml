@@ -1,21 +1,6 @@
 name: pgs-pyt
 
 services:
-  # Definición del servicio para la aplicación Python+FastAPI
-  python:
-    build: ./backend
-    ports:
-      - "8000:8000"
-    environment:
-      # IMPORTANTE: Espacio después de los ':' y usa ${}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
-    volumes:
-      - ./backend:/app
-    depends_on:
-      - postgres
-
   # Definición del servicio para la base de datos PostgreSQL
   postgres:
     image: postgres:17-alpine
@@ -28,7 +13,23 @@ services:
     volumes:
       - ./db:/var/lib/postgresql/data
       - ./backend/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
-# Definición del servicio para pgAdmin
+
+  # Definición del servicio para la aplicación Python+FastAPI
+  inventario:
+    build: ./backend
+    ports:
+      - "8004:8000"
+    environment:
+      # IMPORTANTE: Espacio después de los ':' y usa ${}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - postgres
+
+  # Definición del servicio para pgAdmin
   pgadmin:
     image: dpage/pgadmin4:latest
     environment:
