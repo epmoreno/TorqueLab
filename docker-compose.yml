@@ -1,7 +1,6 @@
 name: pgs-pyt
 
 services:
-  # Definición del servicio para la base de datos PostgreSQL
   postgres:
     image: postgres:17-alpine
     ports:
@@ -14,13 +13,11 @@ services:
       - ./db:/var/lib/postgresql/data
       - ./backend/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
 
-  # Definición del servicio para la aplicación Python+FastAPI
   inventario:
     build: ./backend
     ports:
       - "8004:8000"
     environment:
-      # IMPORTANTE: Espacio después de los ':' y usa ${}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
@@ -29,7 +26,6 @@ services:
     depends_on:
       - postgres
 
-  # Definición del servicio para pgAdmin
   pgadmin:
     image: dpage/pgadmin4:latest
     environment:
@@ -41,3 +37,38 @@ services:
       - ./pgadmin:/var/lib/pgadmin
     depends_on:
       - postgres
+
+  odoo_db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: odoo
+      POSTGRES_PASSWORD: ${ODOO_DB_PASSWORD}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./odoo-db-data:/var/lib/postgresql/data/pgdata
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  odoo:
+    image: odoo:17.0
+    depends_on:
+      odoo_db:
+        condition: service_healthy
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./odoo-web-data:/var/lib/odoo
+      - ./addons:/mnt/extra-addons
+    environment:
+      HOST: odoo_db
+      USER: odoo
+      PASSWORD: ${ODOO_DB_PASSWORD}
+    restart: always
+
+volumes:
+  odoo-web-data:
+  odoo-db-data:
