@@ -31,6 +31,7 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+    user: root
     ports:
       - "5050:80"
     volumes:
@@ -48,13 +49,14 @@ services:
     volumes:
       - ./odoo-db-data:/var/lib/postgresql/data/pgdata
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      test: ["CMD-SHELL", "pg_isready -U odoo -d postgres"]
       interval: 5s
       timeout: 5s
       retries: 10
 
   odoo:
     image: odoo:17.0
+    user: root
     depends_on:
       odoo_db:
         condition: service_healthy
@@ -67,6 +69,7 @@ services:
       HOST: odoo_db
       USER: odoo
       PASSWORD: ${ODOO_DB_PASSWORD}
+      ADMIN_PASSWD: ${ODOO_MASTER_PASSWORD}
     restart: always
 
 volumes:
