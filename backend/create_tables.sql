@@ -339,8 +339,9 @@ INSERT INTO categoria_componente (nombre_categoria, descripcion) VALUES
 ('Motor', 'Componentes relacionados con el motor y su funcionamiento'),
 ('Frenos', 'Piezas del sistema de frenado del vehículo'),
 ('Suspensión', 'Elementos de amortiguación y estabilidad'),
-('Electricidad', 'Componentes eléctricos y electrónicos'),
-('Escape', 'Piezas del sistema de escape y emisiones');
+('Electrónica', 'Componentes eléctricos, ECUs, sensores y sistemas electrónicos'),
+('Escape', 'Piezas del sistema de escape y emisiones'),
+('Cosméticos', 'Kits estéticos, alerones y elementos visuales del vehículo');
 
 --------------------------------------------------
 -- Datos de prueba: cliente
@@ -396,11 +397,43 @@ INSERT INTO vehiculo (matricula, marca, modelo, anio, num_bastidor, id_cliente) 
 -- Datos de prueba: componente
 --------------------------------------------------
 INSERT INTO componente (nombre, descripcion, precio_venta, precio_compra, stock, stock_minimo, tipo_producto, marca, modelos_compatibles, id_proveedor, id_categoria) VALUES
-('Filtro de aceite', 'Filtro de aceite para motores gasolina y diésel', 18.50, 9.20, 40, 10, 'Recambio', 'Bosch', 'Toyota Corolla, Ford Focus', 1, 1),
-('Pastillas de freno delanteras', 'Juego de pastillas de freno delanteras', 65.00, 34.00, 25, 5, 'Recambio', 'Brembo', 'BMW 320d, Audi A3', 4, 2),
-('Amortiguador trasero', 'Amortiguador para eje trasero', 89.90, 50.00, 18, 4, 'Recambio', 'Monroe', 'Seat León, Ford Focus', 2, 3),
+
+-- MOTOR
+('Filtro de aceite Bosch', 'Filtro de aceite para motores gasolina y diésel', 18.50, 9.20, 40, 10, 'Recambio', 'Bosch', 'Seat Ibiza, VW Golf, Audi A3', 1, 1),
+('Kit distribución Gates', 'Kit completo de distribución con tensor', 220.00, 150.00, 12, 3, 'Recambio', 'Gates', 'Volkswagen Golf GTI', 1, 1),
+('Radiador aluminio Mishimoto', 'Radiador de alto rendimiento', 340.00, 250.00, 6, 2, 'Performance', 'Mishimoto', 'BMW M3 E92', 3, 1),
+('Turbo híbrido Garrett', 'Turbo híbrido preparado Stage 2', 1250.00, 980.00, 3, 1, 'Performance', 'Garrett', 'Audi S3 8V', 3, 1),
+
+-- FRENOS
+('Pastillas de freno Brembo', 'Juego de pastillas de freno delanteras', 65.00, 34.00, 25, 5, 'Recambio', 'Brembo', 'BMW Serie 3, Audi A4', 2, 2),
+('Discos ventilados EBC', 'Discos ventilados deportivos', 210.00, 145.00, 10, 3, 'Performance', 'EBC Brakes', 'Ford Focus ST', 2, 2),
+('Kit frenos AP Racing', 'Kit de frenos de 6 pistones', 3200.00, 2500.00, 2, 1, 'Performance', 'AP Racing', 'Nissan GT-R R35', 3, 2),
+('Latiguillos metálicos HEL', 'Latiguillos metálicos reforzados', 95.00, 55.00, 15, 4, 'Recambio', 'HEL Performance', 'BMW M2, Audi RS3', 2, 2),
+
+-- SUSPENSIÓN
+('Amortiguador trasero Monroe', 'Amortiguador para eje trasero', 89.90, 50.00, 18, 4, 'Recambio', 'Monroe', 'Seat León, Ford Focus', 2, 3),
+('Suspensión roscada Bilstein', 'Kit suspensión regulable deportiva', 1450.00, 1100.00, 4, 1, 'Performance', 'Bilstein', 'BMW Serie 1 F20', 3, 3),
+('Muelles Eibach Pro Kit', 'Muelles deportivos rebajados', 280.00, 190.00, 9, 2, 'Performance', 'Eibach', 'Audi A4 B9', 2, 3),
+('Barra estabilizadora Whiteline', 'Barra estabilizadora reforzada', 240.00, 170.00, 7, 2, 'Performance', 'Whiteline', 'Subaru Impreza WRX STI', 3, 3),
+
+-- ELECTRÓNICA
 ('Batería 12V 70Ah', 'Batería de arranque 12V 70Ah', 120.00, 78.50, 12, 3, 'Recambio', 'Varta', 'Toyota Corolla, Audi A3, Seat León', 3, 4),
-('Silencioso trasero', 'Silencioso del sistema de escape', 145.00, 92.00, 8, 2, 'Recambio', 'Walker', 'Ford Focus, BMW 320d', 5, 5);
+('Centralita ECU Stage 1', 'Reprogramación electrónica Stage 1', 450.00, 300.00, 5, 1, 'Electrónica', 'RaceChip', 'Volkswagen Golf GTI', 3, 4),
+('Sensor MAF Bosch', 'Sensor de masa de aire', 85.00, 48.00, 20, 5, 'Recambio', 'Bosch', 'BMW Serie 5 E60', 1, 4),
+('Pantalla Android Auto', 'Pantalla multimedia con Android Auto y CarPlay', 390.00, 260.00, 6, 2, 'Electrónica', 'Pioneer', 'Universal', 4, 4),
+
+-- ESCAPE
+('Silenciador trasero Walker', 'Silenciador del sistema de escape', 145.00, 92.00, 8, 2, 'Recambio', 'Walker', 'Ford Focus, BMW 320d', 5, 5),
+('Downpipe inox Milltek', 'Downpipe inoxidable sin catalizador', 580.00, 430.00, 5, 1, 'Performance', 'Milltek', 'Audi S3 8V', 5, 5),
+('Escape Akrapovic Titanio', 'Sistema de escape completo de titanio', 5200.00, 4100.00, 1, 1, 'Performance', 'Akrapovic', 'BMW M4 G82', 5, 5),
+('Colas de escape negras', 'Juego de colas deportivas negras brillo', 110.00, 70.00, 14, 3, 'Cosmético', 'Remus', 'Universal', 5, 5),
+
+-- COSMÉTICOS
+('Kit ABT Audi RS6', 'Kit estético completo ABT para Audi RS6 C8', 4200.00, 3100.00, 3, 1, 'Cosmético', 'ABT Sportsline', 'Audi RS6 C8', 3, 6),
+('Alerón carbono BMW M4', 'Alerón trasero de fibra de carbono estilo OEM', 650.00, 420.00, 8, 2, 'Cosmético', 'Maxton Design', 'BMW M4 G82', 3, 6),
+('Difusor trasero AMG', 'Difusor deportivo acabado negro brillo', 480.00, 320.00, 6, 2, 'Cosmético', 'Maxton Design', 'Mercedes A45 AMG', 4, 6),
+('Lip frontal Maxton', 'Lip frontal deportivo en ABS', 210.00, 135.00, 11, 3, 'Cosmético', 'Maxton Design', 'Seat León Cupra', 4, 6);
+
 
 --------------------------------------------------
 -- Datos de prueba: servicio
@@ -409,7 +442,7 @@ INSERT INTO servicio (fecha_apertura, fecha_cierre, tipo, descripcion, estado, k
 ('2026-03-01', '2026-03-02', 'Mantenimiento', 'Cambio de aceite y revisión general', 'Finalizado', 118500, 95.00, 1, 1, 1),
 ('2026-03-03', '2026-03-04', 'Reparación', 'Sustitución de pastillas de freno delanteras', 'Finalizado', 84200, 140.00, 2, 2, 1),
 ('2026-03-05', NULL, 'Diagnóstico', 'Revisión de ruido en suspensión trasera', 'En proceso', 91300, 60.00, 3, 3, 1),
-('2026-03-06', '2026-03-06', 'Electricidad', 'Cambio de batería', 'Finalizado', 45200, 135.00, 4, 4, 1),
+('2026-03-06', '2026-03-06', 'Electrónica', 'Cambio de batería', 'Finalizado', 45200, 135.00, 4, 4, 1),
 ('2026-03-07', NULL, 'Reparación', 'Inspección del sistema de escape', 'Pendiente', 132400, 80.00, 5, 5, 1);
 
 --------------------------------------------------

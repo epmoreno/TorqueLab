@@ -3,3 +3,5 @@ db
 pgadmin
 .DS_Store
 .git
+odoo-db-data
+odoo-web-data
