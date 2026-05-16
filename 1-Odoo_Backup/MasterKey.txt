@@ -1,1 +1,3 @@
 px3e-6rsd-ww2j
+ó
+root (configurado mediante .env)
