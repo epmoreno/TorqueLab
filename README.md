@@ -18,3 +18,19 @@ Una vez descargado el proyecto: <br>
 	-Contraseña: root<br>
 	
 ====================================================================
+======================== INSTRUCCIONES ODOO ======================== <br> 
+Una vez descargado el proyecto: <br>
+
+1- Renombrar "acceso.env" a ".env" <br>
+2- Poner "docker compose up --build" en la terminal del proyecto en Docker. <br>
+3- Acceso a ODOO mediante la URL: http:/localhost:8069 <br><br>
+
+Para restaurar Backup de la base de datos: <br>
+4- Clic en "Restore database". <br>
+5- Poner los siguientes datos: <br>
+	-Clave maestra: root <br>
+	-Fichero: .zip en la carpeta "1-Odoo_Backup" <br>
+	-Nombre de la base de datos: Odoo_db <br>
+6- Acceder <br>
+
+====================================================================
